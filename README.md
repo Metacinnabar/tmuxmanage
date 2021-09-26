@@ -1,7 +1,7 @@
 # tmuxmanage
-[![CodeFactor](https://www.codefactor.io/repository/github/goodpro712/tmuxmanage/badge)](https://www.codefactor.io/repository/github/goodpro712/tmuxmanage)
-![License](https://img.shields.io/github/license/goodpro712/tmuxmanage)
-![Last commit](https://img.shields.io/github/last-commit/goodpro712/tmuxmanage)
+[![CodeFactor](https://www.codefactor.io/repository/github/metacinnabar/tmuxmanage/badge)](https://www.codefactor.io/repository/github/metacinnabar/tmuxmanage)
+![License](https://img.shields.io/github/license/Metacinnabar/tmuxmanage)
+![Last commit](https://img.shields.io/github/last-commit/Metacinnabar/tmuxmanage)
 
 **Simple script to start, stop, and restart tmux sessions built for my projects.**
 
@@ -9,7 +9,7 @@
 
 ## Setup
 
-- Clone the repository (`git clone https://github.com/GoodPro712/tmuxmanage.git && cd tmuxmanage`).
+- Clone the repository (`git clone https://github.com/Metacinnabar/tmuxmanage.git && cd tmuxmanage`).
 - Run the setup script (`sudo chmod +x setup.sh && bash setup.sh`).
 
 ## Commands
@@ -21,7 +21,7 @@
 `restart`                             | Restarts the tmux session   | `tmuxmanage restart`              
 
 ## Support
-For any bug reports questions or requests please create an issue via the [issue tracker](https://github.com/GoodPro712/tmuxmanage/issues).
+For any bug reports questions or requests please create an issue via the [issue tracker](https://github.com/Metacinnabar/tmuxmanage/issues).
 
 ## License
-**tmuxmanage** is licensed under the [MIT License](https://github.com/GoodPro712/tmuxmanage/blob/master/LICENSE).
+**tmuxmanage** is licensed under the [MIT License](https://github.com/Metacinnabar/tmuxmanage/blob/master/LICENSE).
