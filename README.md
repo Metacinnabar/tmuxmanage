@@ -3,7 +3,7 @@
 ![License](https://img.shields.io/github/license/goodpro712/tmuxmanage)
 ![Last commit](https://img.shields.io/github/last-commit/goodpro712/tmuxmanage)
 
-**Simple script to start stop and restart tmux sessions built for my projects.**
+**Simple script to start, stop, and restart tmux sessions built for my projects.**
 
 - If you found tmuxmanage helpful or neat please consider leaving a star ⭐
 
