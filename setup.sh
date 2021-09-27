@@ -10,4 +10,4 @@ if [ -f $FILE_PATH ]; then
 fi
 
 sudo cp ./tmuxmanage /usr/bin/
-echo "Setup tmuxmanage! Run \"tmuxmanage setup\"" to get started."
+echo "Setup tmuxmanage! Run \"tmuxmanage setup\" to get started."
