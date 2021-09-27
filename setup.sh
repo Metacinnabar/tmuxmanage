@@ -1,13 +1,14 @@
 #!/bin/sh
 
-FILE_PATH="/usr/bin/tmuxmanage"
+DIRECTORY_PATH="/usr/bin"
+FILE_PATH="$DIRECTORY_PATH/tmuxmanage"
 
-echo "Copying tmuxmanage to $FILE_PATH"
+echo "Copying tmuxmanage to $DIRECTORY_PATH"
 
 if [ -f $FILE_PATH ]; then
     echo "Cleaning old files"
     sudo rm -f $FILE_PATH
 fi
 
-sudo cp ./tmuxmanage /usr/bin/
-echo "Setup tmuxmanage! Run \"tmuxmanage setup\" to get started."
+sudo cp ./tmuxmanage DIRECTORY_PATH
+echo "Setup tmuxmanage successfully! Run \"tmuxmanage setup\" to get started."

@@ -1,0 +1,101 @@
+#!/bin/bash
+
+TMUXMANAGE_FILE=".tmuxmanage"
+
+
+# tmuxmanage setup python_process "python3 main.py"
+
+if [[ $1 == "setup" ]]; then
+
+	if [ $# -lt 3 ]; then
+    	echo "Usage: tmuxmanage setup [process name] [startup task]"
+    	exit 1
+	fi
+
+	if [ -f "$TMUXMANAGE_FILE" ]; then
+		echo "Cleaning up old .tmuxmanage file"
+		rm -rf $TMUXMANAGE_FILE
+	fi
+
+	echo "Creating .tmuxmanage file"
+	touch $TMUXMANAGE_FILE
+
+	echo "Setting up tmuxmanage"
+	echo $2 >> $TMUXMANAGE_FILE
+	echo $3 >> $TMUXMANAGE_FILE
+
+	echo "Finished setting up tmuxmanage!"
+	exit
+
+fi
+
+if [ ! -f "$TMUXMANAGE_FILE" ]; then
+    echo "Could not find .tmuxmanage file. Please run tmuxmanage setup [process name] [startup task]"
+    exit
+fi
+
+
+PROCESS_NAME=$(sed '1q;d' $TMUXMANAGE_FILE)
+STARTUP_TASK=$(sed '2q;d' $TMUXMANAGE_FILE)
+
+
+# tmuxmanage start
+
+function start() {
+
+	echo "Starting session"
+	tmux new -d -s $PROCESS_NAME
+
+	tmux send -t $PROCESS_NAME "$STARTUP_TASK" ENTER
+
+	echo "Tmux session started! Connect with \"tmux a -t $PROCESS_NAME\" and disconnect with Ctrl B + D"
+}
+
+if [[ $1 == "start" ]]; then
+
+	start
+	exit
+
+fi
+
+
+# tmuxmanage stop
+
+function stop() {
+
+	echo "Stopping session"
+	tmux send -t $PROCESS_NAME ^C ENTER "exit" ENTER
+
+	echo "Tmux session stopped!"
+
+}
+
+if [[ $1 == "stop" || $1 == "kill" ]]; then
+
+	stop
+	exit
+
+fi
+
+
+# tmuxmanage restart
+
+if [[ $1 == "restart" ]]; then
+
+	stop
+
+	# tmux can "server exited unexpectedly" if ran too fast
+
+	if [ $# -ge 2 ]; then
+    	sleep $2
+	else
+		sleep 1
+	fi
+
+	echo ""
+
+	start
+
+	exit
+
+fi
