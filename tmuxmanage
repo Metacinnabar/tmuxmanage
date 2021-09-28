@@ -2,9 +2,6 @@
 
 TMUXMANAGE_FILE=".tmuxmanage"
 
-
-# tmuxmanage setup python_process "python3 main.py"
-
 if [[ $1 == "setup" ]]; then
 
 	if [ $# -lt 3 ]; then
@@ -39,8 +36,6 @@ PROCESS_NAME=$(sed '1q;d' $TMUXMANAGE_FILE)
 STARTUP_TASK=$(sed '2q;d' $TMUXMANAGE_FILE)
 
 
-# tmuxmanage start
-
 function start() {
 
 	echo "Starting session"
@@ -51,16 +46,6 @@ function start() {
 	echo "Tmux session started! Connect with \"tmux a -t $PROCESS_NAME\" and disconnect with Ctrl B + D"
 }
 
-if [[ $1 == "start" ]]; then
-
-	start
-	exit
-
-fi
-
-
-# tmuxmanage stop
-
 function stop() {
 
 	echo "Stopping session"
@@ -70,17 +55,18 @@ function stop() {
 
 }
 
-if [[ $1 == "stop" || $1 == "kill" ]]; then
+
+if [[ $1 == "start" ]]; then
+
+	start
+	exit
+
+elif [[ $1 == "stop" ]]; then
 
 	stop
 	exit
 
-fi
-
-
-# tmuxmanage restart
-
-if [[ $1 == "restart" ]]; then
+elif [[ $1 == "restart" ]]; then
 
 	stop
 

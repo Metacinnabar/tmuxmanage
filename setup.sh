@@ -10,5 +10,6 @@ if [ -f $FILE_PATH ]; then
     sudo rm -f $FILE_PATH
 fi
 
-sudo cp ./tmuxmanage DIRECTORY_PATH
+sudo cp ./tmuxmanage $DIRECTORY_PATH
+sudo chmod +x $FILE_PATH
 echo "Setup tmuxmanage successfully! Run \"tmuxmanage setup\" to get started."
