@@ -19,7 +19,10 @@ if [[ $1 == "setup" ]]; then
 
 	echo "Setting up tmuxmanage"
 	echo $2 >> $TMUXMANAGE_FILE
-	echo $3 >> $TMUXMANAGE_FILE
+	
+	for task in "${@:3}"; do
+		echo "$task" >> $TMUXMANAGE_FILE
+	done
 
 	echo "Finished setting up tmuxmanage!"
 	exit
@@ -31,30 +34,36 @@ if [ ! -f "$TMUXMANAGE_FILE" ]; then
     exit
 fi
 
-
-PROCESS_NAME=$(sed '1q;d' $TMUXMANAGE_FILE)
-STARTUP_TASK=$(sed '2q;d' $TMUXMANAGE_FILE)
+PROCESS_NAME=$(head -n1 $TMUXMANAGE_FILE)
 
 
 function start() {
 
 	echo "Starting session"
+
 	tmux new -d -s $PROCESS_NAME
 
-	tmux send -t $PROCESS_NAME "$STARTUP_TASK" ENTER
+	while read -r task; do
+
+ 		echo "Executing $task"
+
+ 		tmux send -t $PROCESS_NAME "$task" ENTER
+
+	done <<< $(sed 1d $TMUXMANAGE_FILE)
 
 	echo "Tmux session started! Connect with \"tmux a -t $PROCESS_NAME\" and disconnect with Ctrl B + D"
+
 }
 
 function stop() {
 
 	echo "Stopping session"
-	tmux send -t $PROCESS_NAME ^C ENTER "exit" ENTER
+
+	tmux kill-session -t $PROCESS_NAME
 
 	echo "Tmux session stopped!"
 
 }
-
 
 if [[ $1 == "start" ]]; then
 
@@ -77,8 +86,6 @@ elif [[ $1 == "restart" ]]; then
 	else
 		sleep 1
 	fi
-
-	echo ""
 
 	start
 
