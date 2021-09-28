@@ -15,7 +15,7 @@
 ## Commands
 | command | description | example |
 | - | - | - |
-`setup [process name] [startup task]` | Setup a `.tmuxmanage` file  | `tmuxmanage start python_task "python3 main.py"`
+`setup [process-name] [startup-task] [startup-task]...` | Setup a `.tmuxmanage` file  | `tmuxmanage start python_task "python3 main.py" "echo \"python!\"" "ls"`
 `start`                               | Starts the tmux session     | `tmuxmanage start`
 `stop`                                | Stops the tmux session      | `tmuxmanage stop`
 `restart`                             | Restarts the tmux session   | `tmuxmanage restart`              
