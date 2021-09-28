@@ -14,11 +14,8 @@ if [[ $1 == "setup" ]]; then
 		rm -rf $TMUXMANAGE_FILE
 	fi
 
-	echo "Creating .tmuxmanage file"
-	touch $TMUXMANAGE_FILE
-
 	echo "Setting up tmuxmanage"
-	echo $2 >> $TMUXMANAGE_FILE
+	echo $2 > $TMUXMANAGE_FILE
 	
 	for task in "${@:3}"; do
 		echo "$task" >> $TMUXMANAGE_FILE
